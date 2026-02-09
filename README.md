@@ -1,8 +1,7 @@
 <div align="center">
   <img src="frontend/src/images/logo.png" alt="TabulaRAG logo" width="64" height="64" />
   <h1>TabulaRAG</h1>
-  A fast-ingesting tabular data RAG MCP tool backed with cell citations.
-
+  A fast-ingesting tabular data MCP RAG tool backed with cell citations.
 </div>
 
 ## UI Preview
