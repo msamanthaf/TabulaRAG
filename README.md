@@ -35,6 +35,20 @@ Backend API: `http://localhost:8000`
 docker compose down
 ```
 
+## Tech Stack
+
+- FastAPI + Uvicorn (backend API)
+- Python + SQLAlchemy (ingestion + data access)
+- PostgreSQL (row storage)
+- Qdrant (vector index)
+- React + Vite (frontend UI)
+- MCP + OpenAPI (tool integrations)
+
+## Prerequisites
+
+- Docker Engine / Docker Desktop
+- Docker Compose (v2)
+
 ## Integrations
 
 ### MCP (Model Context Protocol)
@@ -67,7 +81,6 @@ Schema: `http://localhost:8000/openapi.json`
 ## High-level Architecture
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': { 'background': 'transparent' }}}%%
 graph TD
   A[Large CSV Data Upload] --> B[Parse Rows]
   B --> C[Normalize Cells]
