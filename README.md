@@ -5,6 +5,18 @@
 
 </div>
 
+## UI Preview
+<table>
+  <tr>
+    <td><img src="frontend/src/images/preview1.png" alt="TabulaRAG preview 1" /></td>
+    <td><img src="frontend/src/images/preview2.png" alt="TabulaRAG preview 2" /></td>
+  </tr>
+  <tr>
+    <td><img src="frontend/src/images/preview3.png" alt="TabulaRAG preview 3" /></td>
+    <td><img src="frontend/src/images/preview4.png" alt="TabulaRAG preview 4" /></td>
+  </tr>
+</table>
+
 ## Getting started
 
 1. Build and start all services:
@@ -55,6 +67,7 @@ Schema: `http://localhost:8000/openapi.json`
 ## High-level Architecture
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'background': 'transparent' }}}%%
 graph TD
   A[Large CSV Data Upload] --> B[Parse Rows]
   B --> C[Normalize Cells]
