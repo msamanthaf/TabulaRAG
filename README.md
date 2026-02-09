@@ -17,6 +17,17 @@
   </tr>
 </table>
 
+## Tech Stack
+
+- Backend: Python 3.11, FastAPI, Uvicorn, SQLAlchemy, PostgreSQL, Qdrant, MCP, OpenAPI
+- Frontend: TypeScript, React, Vite
+
+## Prerequisites
+
+- Docker Engine / Docker Desktop
+- Docker Compose (v2)
+- Optional for local dev: Python 3.11+, Node.js 18+
+
 ## Getting started
 
 1. Build and start all services:
@@ -34,20 +45,6 @@ Backend API: `http://localhost:8000`
 ```bash
 docker compose down
 ```
-
-## Tech Stack
-
-- FastAPI + Uvicorn (backend API)
-- Python + SQLAlchemy (ingestion + data access)
-- PostgreSQL (row storage)
-- Qdrant (vector index)
-- React + Vite (frontend UI)
-- MCP + OpenAPI (tool integrations)
-
-## Prerequisites
-
-- Docker Engine / Docker Desktop
-- Docker Compose (v2)
 
 ## Integrations
 
