@@ -1,6 +1,9 @@
-<h1><img src="frontend/src/images/logo.png" alt="TabulaRAG logo" width="32" /> TabulaRAG</h1>
+<div align="center">
+  <img src="frontend/src/images/logo.png" alt="TabulaRAG logo" width="64" height="64" />
+  <h1>TabulaRAG</h1>
+  A fast-ingesting tabular data RAG MCP tool backed with cell citations.
 
-TabulaRAG is a tabular data RAG tool that handles large CSV and TSVs quickly, indexes them for retrieval, and returns answers with cell-level citations. It includes a web UI for upload and table/row highlighting, plus a backend service for ingestion and retrieval.
+</div>
 
 ## Getting started
 
@@ -49,7 +52,7 @@ Schema: `http://localhost:8000/openapi.json`
 4. Recommended endpoints:
 `POST /upload`, `GET /tables`, `POST /query`, `GET /highlights/{highlight_id}`.
 
-## Architecture
+## High-level Architecture
 
 ```mermaid
 graph TD
