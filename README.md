@@ -1,6 +1,4 @@
-# TabulaRAG
-
-![TabulaRAG logo](frontend/src/images/logo.png)
+<h1><img src="frontend/src/images/logo.png" alt="TabulaRAG logo" width="32" /> TabulaRAG</h1>
 
 TabulaRAG is a tabular data RAG tool that handles large CSV and TSVs quickly, indexes them for retrieval, and returns answers with cell-level citations. It includes a web UI for upload and table/row highlighting, plus a backend service for ingestion and retrieval.
 
