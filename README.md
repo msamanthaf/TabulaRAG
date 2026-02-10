@@ -76,37 +76,34 @@ Schema: `http://localhost:8000/openapi.json`
 
 ## High-level Architecture
 
+
 ```mermaid
 graph TD
-  A[Large CSV Data Upload] --> B[Parse Rows]
-  B --> C[Normalize Cells]
-  C --> D[Row Text Build]
-  D --> E[Bulk Store in DB]
-  E --> F[Background Embedding + Vector Index]
+  A[Large Tabular File Upload] --> B[Parse Rows]
+  B --> C[Normalize Data]
+  C --> D[Store Rows in Relational DB]
+  C -.-> E[Embed Row Text]
+  E --> F[Build Vector Index]
 
-  Q[User Question] --> W[Open WebUI]
-  W --> M[MCP Tool Call]
-  M --> R{Hybrid Retrieval}
-  E -.-> R
+  Q[User Question] --> W[LLM Client/Open WebUI]
+  W --> M[MCP/OpenAPI Tool Call]
+  M --> N[Query Endpoint]
+  N --> R[Retrieve Matching Rows]
+  D -.-> R
   F -.-> R
-  R --> G[Context-Grounded Answer Generation]
-  G --> H{Judge Agent Verification}
-  H -- Low Confidence --> R
-  H -- High Confidence --> I[Final Answer with Citations]
-  I --> J[DeepEval Quality Guardrails]
-  I --> K[Highlight Creation + URL]
-  K --> L[Frontend Highlight View]
+  R --> H[Answer with Citations]
+  H --> U[Create Highlight URL]
+  H --> O[Response to LLM Client/Open WebUI]
+  U --> L[Highlight View Page]
 
   classDef ingest fill:#FFE6CC,stroke:#C97A3D,color:#3D2B1F;
   classDef retrieval fill:#D6ECFF,stroke:#2F6DB5,color:#123255;
   classDef answer fill:#E6F5E9,stroke:#2E7D32,color:#1B4D2B;
-  classDef verify fill:#FDE2E2,stroke:#C0392B,color:#5A1C16;
   classDef ui fill:#F3E5F5,stroke:#6A1B9A,color:#3F0A5C;
 
   class A,B,C,D,E,F ingest;
-  class Q,W,M,R retrieval;
-  class G,I,J,K answer;
-  class H verify;
-  class L ui;
+  class Q,M,N,R retrieval;
+  class H,U answer;
+  class W,L,O ui;
 
 ```
