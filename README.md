@@ -78,32 +78,41 @@ Schema: `http://localhost:8000/openapi.json`
 
 
 ```mermaid
-graph TD
-  A[Large Tabular File Upload] --> B[Parse Rows]
-  B --> C[Normalize Data]
-  C --> D[Store Rows in Relational DB]
-  C -.-> E[Embed Row Text]
-  E --> F[Build Vector Index]
+flowchart TD
+  U([User]) --> IN[/"Upload CSV or Ask Question"/]
+  IN --> C{Client Type}
+  C -->|Web App| FE["React + Vite Frontend"]
+  C -->|Tool Caller| OW[Open WebUI / MCP Caller]
 
-  Q[User Question] --> W[LLM Client/Open WebUI]
-  W --> M[MCP/OpenAPI Tool Call]
-  M --> N[Query Endpoint]
-  N --> R[Retrieve Matching Rows]
-  D -.-> R
-  F -.-> R
-  R --> H[Answer with Citations]
-  H --> U[Create Highlight URL]
-  H --> O[Response to LLM Client/Open WebUI]
-  U --> L[Highlight View Page]
+  FE --> API["FastAPI + Uvicorn Backend"]
+  OW --> API
 
-  classDef ingest fill:#FFE6CC,stroke:#C97A3D,color:#3D2B1F;
-  classDef retrieval fill:#D6ECFF,stroke:#2F6DB5,color:#123255;
-  classDef answer fill:#E6F5E9,stroke:#2E7D32,color:#1B4D2B;
-  classDef ui fill:#F3E5F5,stroke:#6A1B9A,color:#3F0A5C;
+  API --> MCP[MCP Server Endpoint]
+  API --> OAPI[/"OpenAPI Schema + REST Endpoints"/]
+  API --> FS[/"Uploads directory: data/uploads"/]
 
-  class A,B,C,D,E,F ingest;
-  class Q,M,N,R retrieval;
-  class H,U answer;
-  class W,L,O ui;
+  API --> ING["Parse + Normalize + Store Data Rows"]
+  ING --> DB[(PostgreSQL)]
+  ING --> EMB[FastEmbed]
+  EMB --> VDB[(Qdrant Vector DB)]
+
+  API --> RET[Retrieve Matching Rows]
+  DB --> RET
+  VDB --> RET
+
+  RET --> ANS["Answer with Citations + Highlight URL"]
+  ANS --> OUT[/"Response to Frontend or Open WebUI"/]
+  OUT --> END([End])
+
+  classDef term fill:#FFF7D6,stroke:#B08900,color:#5C4500;
+  classDef user fill:#F3E5F5,stroke:#6A1B9A,color:#3F0A5C;
+  classDef api fill:#D6ECFF,stroke:#2F6DB5,color:#123255;
+  classDef data fill:#E6F5E9,stroke:#2E7D32,color:#1B4D2B;
+  classDef infra fill:#FFE6CC,stroke:#C97A3D,color:#3D2B1F;
+
+  class U,IN,C,OW,END term;
+  class FE,API,MCP,OAPI,RET,ANS api;
+  class DB,VDB,FS,EMB data;
+  class ING infra;
 
 ```
